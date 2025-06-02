@@ -31,10 +31,28 @@
       border-radius: 15px;
       width: 350px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 1.8s ease-in-out;
+      animation: fadeIn 2.8s ease-in-out;
+      transition: background-color 1.2s ease;
     }
 
-    .login-box h2 {
+    body:hover {
+      animation: animate1 5s;
+    }
+
+    @keyframes animate1 {
+     
+      20% {
+        background-color: red;
+      }
+      50% {
+        background-color: green;
+      }
+      40% {
+        background-color: white;
+      }
+    }
+
+    h2 {
       text-align: center;
       margin-bottom: 30px;
       font-size: 2em;
@@ -47,7 +65,7 @@
 
     .input-box input {
       width: 100%;
-      padding: 10px 10px 10px 10px;
+      padding: 10px;
       background: transparent;
       border: none;
       border-bottom: 2px solid #fff;
@@ -89,11 +107,26 @@
       color: #111;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background-color 1.0s ease;
     }
 
     button:hover {
-      background: #09c;
+      animation: animate 5s;
+    }
+
+    @keyframes animate {
+      20% {
+        background-color: red;
+      }
+      40% {
+        background-color: black;
+      }
+      60% {
+        background-color: green;
+      }
+      100% {
+        background-color: whitesmoke;
+      }
     }
 
     .register-link {
@@ -130,20 +163,23 @@
       <h2>Login</h2>
 
       <div class="input-box">
-        <input type="text" name="username" value="<%= request.getParameter("username") != null ? request.getParameter("username") : "" %>" required />
+        <input type="text" name="username" aria-label="Username" autocomplete="off"
+               value="<%= request.getParameter("username") != null ? request.getParameter("username") : "" %>" required />
         <label>UserName</label>
       </div>
 
       <div class="input-box">
-        <input type="password" name="password" required />
+        <input type="password" name="password" aria-label="Password" required />
         <label>Password</label>
       </div>
-<% 
+
+      <% 
         String error = (String) request.getAttribute("errorMessage");
         if (error != null) { 
       %> 
         <div class="message"><%= error %></div>
       <% } %>
+
       <button type="submit">Login</button>
 
       <div class="register-link">
